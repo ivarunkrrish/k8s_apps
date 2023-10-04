@@ -14,6 +14,5 @@ spec:
               cpu: 500m
               memory: 1.0Gi
             requests:
-              cpu: 1.0m
-              memory: 3.0Mi
-
+              cpu: 3.0m
+              memory: 6.0Mi
