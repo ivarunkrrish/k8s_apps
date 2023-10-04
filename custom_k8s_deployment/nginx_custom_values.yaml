@@ -1,28 +1,20 @@
 nginx-demo1:
   replicaCount: 1
-
   image:
     repository: docker/vartest
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
     tag: var-1.1
-
   imagePullSecrets:
     - name: vartest
-  nameOverride: "nginx-demo1"
-  fullnameOverride: ""
-
+  nameOverride: nginx-demo1
+  fullnameOverride: ''
   rollingUpdate:
     maxSurge: 1
     maxUnavailable: 0
     type: RollingUpdate
-
   deploymentLabels: {}
-
   podLabels: {}
-
-  containerName: "nginx-demo"
-
+  containerName: nginx-demo
   service:
     name: var-ms
     enabled: true
@@ -31,32 +23,25 @@ nginx-demo1:
     portName: http
     targetPort: 80
     sessionAffinity: None
-
   ingress:
     enabled: true
     annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
     hosts:
       - host: var-ms.com
         paths:
           - /
     tls: []
-
-
   cm:
     create: true
     type: local
     files:
-    - settings.yaml: |-
-        # To be using with a docker
+      - settings.yaml: |-
+          # To be using with a docker
 
-        API_PORT: 86
-
-    - supervisord.conf: |-
-        [supervisord]
-        nodaemon=true
-
+          API_PORT: 86
+      - supervisord.conf: |-
+          [supervisord]
+          nodaemon=true
   volumes:
     enabled: true
     cm:
@@ -70,7 +55,6 @@ nginx-demo1:
           mountPath: /var/settings.yaml
           name: cve-conf
           subPath: settings.yaml
-
     secrets:
       enabled: true
       secretName: var-secret
@@ -78,39 +62,29 @@ nginx-demo1:
       subPath: secrets.yaml
     extraVolumeMounts:
       enabled: false
-
   ports:
     enabled: true
     portname: http
     containerPort: 80
     protocol: TCP
-
-
   extraEnvs:
     - name: AWS_ROLE_SESSION_NAME
-      value: "var-ms-test"
-
-
+      value: var-ms-test
   resources:
-     limits:
-       cpu: "2"
-       memory: 1Gi
-     requests:
-       cpu: 500m
-       memory: 500Mi
-
+    limits:
+      cpu: '2'
+      memory: 1Gi
+    requests:
+      cpu: 500m
+      memory: 500Mi
   autoscaling:
     enabled: false
     minReplicas: 2
     maxReplicas: 5
     targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
-
   nodeSelector:
     a: c
-
   tolerations: []
-
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -131,47 +105,34 @@ nginx-demo1:
                     - my-release-nginx-demo
             topologyKey: kubernetes.io/hostname
           weight: 1
-
   podAnnotations: {}
-
   podSecurityContext: {}
-
   securityContext: {}
-
 
 nginx-server-nginx-repo:
   replicaCount: 1
-
   image:
     repository: docker/testing
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
     tag: nginx-server-nginx-repo-1.1
-
   imagePullSecrets:
     - name: vartest
-  nameOverride: "nginx-server-nginx-repo"
-  fullnameOverride: "nginx-server-nginx-repo"
-
-  containerName: "nginx-repo"
-
+  nameOverride: nginx-server-nginx-repo
+  fullnameOverride: nginx-server-nginx-repo
+  containerName: nginx-repo
   deploymentLabels:
     app.kubernetes.io/name: nginx-server-nginx-repo
-
   podLabels: {}
-
   service:
     enabled: false
-
   cm:
     create: true
     type: local
     files:
-    - settings.yaml: |-
-        # To be using with a docker
+      - settings.yaml: |-
+          # To be using with a docker
 
-        API_PORT: 86
-
+          API_PORT: 86
   volumes:
     enabled: true
     cm:
@@ -195,44 +156,26 @@ nginx-server-nginx-repo:
       subPath: secrets.yaml
     extraVolumeMounts:
       enabled: false
-      #mounts: |-
-      #  - mountPath: /extra1
-      #    name: extra1
-      #volumes: |
-      #   - name: extra1
-      #     configMap:
-      #       name: test
-
   ports:
     enabled: false
-
   extraEnvs:
     - name: AWS_ROLE_SESSION_NAME
-      value: "var-ms-test"
-
+      value: var-ms-test
   livenessProbeEnabled: false
   readinessProbeEnabled: false
   readinessProbe: false
-
   resources:
-     limits:
-       cpu: 250m
-       memory: 1500Mi
-     requests:
-       cpu: 100m
-       memory: 600Mi
-
+    limits:
+      cpu: 250m
+      memory: 1500Mi
+    requests:
+      cpu: 100m
+      memory: 600Mi
   autoscaling:
     enabled: false
-
   nodeSelector: {}
-
   tolerations: []
-
   affinity: {}
-
   podAnnotations: {}
-
   podSecurityContext: {}
-
   securityContext: {}
