@@ -48,14 +48,14 @@ nginx-demo1:
     create: true
     type: local
     files:
-    - settings.yaml: |-
-        # To be using with a docker
+      - settings.yaml: |-
+          # To be using with a docker
 
-        API_PORT: 86
+          API_PORT: 86
 
-    - supervisord.conf: |-
-        [supervisord]
-        nodaemon=true
+      - supervisord.conf: |-
+          [supervisord]
+          nodaemon=true
 
   volumes:
     enabled: true
@@ -92,13 +92,12 @@ nginx-demo1:
 
 
   resources:
-     limits:
-       cpu: "2"
-       memory: 1Gi
-     requests:
-       cpu: 500m
-       memory: 500Mi
-
+    limits:
+      cpu: "2"
+      memory: 1Gi
+    requests:
+      cpu: 3.0m
+      memory: 6.0Mi
   autoscaling:
     enabled: false
     minReplicas: 2
@@ -167,10 +166,10 @@ nginx-server-nginx-repo:
     create: true
     type: local
     files:
-    - settings.yaml: |-
-        # To be using with a docker
+      - settings.yaml: |-
+          # To be using with a docker
 
-        API_PORT: 86
+          API_PORT: 86
 
   volumes:
     enabled: true
@@ -215,13 +214,12 @@ nginx-server-nginx-repo:
   readinessProbe: false
 
   resources:
-     limits:
-       cpu: 250m
-       memory: 1500Mi
-     requests:
-       cpu: 100m
-       memory: 600Mi
-
+    limits:
+      cpu: 250m
+      memory: 1500Mi
+    requests:
+      cpu: 3.0m
+      memory: 9.0Mi
   autoscaling:
     enabled: false
 
