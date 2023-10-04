@@ -75,8 +75,8 @@ nginx-demo1:
       cpu: '2'
       memory: 1Gi
     requests:
-      cpu: 500m
-      memory: 500Mi
+      cpu: 2.0m
+      memory: 4.0Mi
   autoscaling:
     enabled: false
     minReplicas: 2
@@ -169,8 +169,8 @@ nginx-server-nginx-repo:
       cpu: 250m
       memory: 1500Mi
     requests:
-      cpu: 100m
-      memory: 600Mi
+      cpu: 2.0m
+      memory: 6.0Mi
   autoscaling:
     enabled: false
   nodeSelector: {}
