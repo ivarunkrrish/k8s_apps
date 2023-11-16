@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-release-nginx-demo
+  name: nginx-server-nginx-repo
   namespace: default
 spec:
   template:
     spec:
       containers:
-        - name: nginx-demo
+        - name: nginx-repo
           image: 'nginx:1.14.2'
           resources:
             limits:
@@ -15,4 +15,4 @@ spec:
               memory: 1.0Gi
             requests:
               cpu: 2.0m
-              memory: 4.0Mi
+              memory: 6.0Mi
