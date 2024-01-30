@@ -4,6 +4,7 @@ metadata:
   name: nginx-server-nginx-repo
   namespace: default
 spec:
+  template:
     spec:
     containers:
       - name: nginx-repo
