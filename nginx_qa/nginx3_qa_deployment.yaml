@@ -14,7 +14,7 @@ spec:
               cpu: 500m
               memory: 1.0Gi
             requests:
-              cpu: 0.1m
+              cpu: 100m
               memory: 1024Mi
         - name: vartest-nginx-logs
           image: 'nginx:1.14.2'
@@ -23,5 +23,5 @@ spec:
               cpu: 500m
               memory: 1.0Gi
             requests:
-              cpu: 0.1m
+              cpu: 100m
               memory: 1024Mi
