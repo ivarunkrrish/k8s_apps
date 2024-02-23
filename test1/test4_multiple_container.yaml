@@ -17,19 +17,19 @@ spec:
         tier: backend
     spec:
       containers:
-      - name: vartest-nginx
-        image: registry.k8s.io/redis:e2e  # or just image: redis
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-        ports:
-        - containerPort: 6379
-      - name: vartest-nginx-logs
-        image: registry.k8s.io/redis:e2e  # or just image: redis
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-        ports:
-        - containerPort: 6379
+        - name: vartest-nginx
+          image: registry.k8s.io/redis:e2e # or just image: redis
+          resources:
+            requests:
+              cpu: 100.0m
+              memory: 2.0Mi
+          ports:
+            - containerPort: 6379
+        - name: vartest-nginx-logs
+          image: registry.k8s.io/redis:e2e # or just image: redis
+          resources:
+            requests:
+              cpu: 100.0m
+              memory: 1024.0Mi
+          ports:
+            - containerPort: 6379
