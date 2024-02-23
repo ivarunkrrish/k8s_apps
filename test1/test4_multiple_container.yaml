@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: vartest-nginx-server
+spec:
+  volumes:
+    - name: shared-data
+      emptyDir: {}
+  containers:
+    - name: vartest-nginx
+      image: registry.k8s.io/redis:e2e  # or just image: redis
+      resources:
+        requests:
+          cpu: 100m
+          memory: 100Mi
+        ports:
+        - containerPort: 6379
+    - name: vartest-nginx-logs
+      image: debian
+      requests:
+          cpu: 80m
+          memory: 1000Mi
+      volumeMounts:
+        - name: shared-data
+          mountPath: /data
+      command: ["/bin/sh"]
+      args: ["-c", "echo Level Up Blue Team! > /data/index.html"]
