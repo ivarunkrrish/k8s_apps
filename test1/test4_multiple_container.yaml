@@ -17,9 +17,10 @@ spec:
         - containerPort: 6379
     - name: vartest-nginx-logs
       image: debian
-      requests:
-          cpu: 80m
-          memory: 1000Mi
+      resources:
+        requests:
+            cpu: 80m
+            memory: 1000Mi
       volumeMounts:
         - name: shared-data
           mountPath: /data
