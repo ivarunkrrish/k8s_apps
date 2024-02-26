@@ -14,6 +14,13 @@ spec:
     spec:
       containers:
       - name: vartest-nginx
+        resources:
+          limits:
+            cpu: 200m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
       - args:
         - --leader-elect
         command:
