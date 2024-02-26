@@ -1,6 +1,6 @@
 nginx-demo1:
   deploymentLabels:
-    app.kubernetes.io/name: my-release-nginx-demo
+    app.kubernetes.io/name: nginx-demo
   containerName: nginx-demo
   resources:
     limits:
