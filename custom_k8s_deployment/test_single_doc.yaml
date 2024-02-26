@@ -1,0 +1,11 @@
+nginx-demo1:
+  deploymentLabels:
+    app.kubernetes.io/name: my-release-nginx-demo
+  containerName: nginx-demo
+  resources:
+    limits:
+      cpu: '2'
+      memory: 1Gi
+    requests:
+      cpu: 500m
+      memory: 500Mi
