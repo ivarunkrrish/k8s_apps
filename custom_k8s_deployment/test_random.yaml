@@ -1,5 +1,4 @@
----
-clusterName: "opensearch-cluster"
+clusterName: "redis-master"
 nodeGroup: "master"
 
 # If discovery.type in the opensearch configuration is set to "single-node",
