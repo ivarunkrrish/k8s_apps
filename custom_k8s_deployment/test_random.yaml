@@ -161,7 +161,7 @@ redis-master:
   # Extra environment variables to append to this nodeGroup
   # This will be appended to the current 'env:' key. You can use any of the kubernetes env
   # syntax here
-  extraEnvs: []
+  
   #  - name: MY_ENVIRONMENT_VAR
   #    value: the_value_goes_here
   # Chart version 2.18.0 and App Version OpenSearch 2.12.0 onwards a custom strong password needs to be provided in order to setup demo admin user.
@@ -204,10 +204,7 @@ redis-master:
 
   opensearchJavaOpts: "-Xmx512M -Xms512M"
 
-  resources:
-    requests:
-      cpu: "1000m"
-      memory: "100Mi"
+
 
   initResources: {}
   #  limits:
