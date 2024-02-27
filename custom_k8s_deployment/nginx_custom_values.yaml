@@ -1,4 +1,4 @@
-nginx-demo1:
+redis-master:
   replicaCount: 1
   image:
     repository: docker/vartest
@@ -14,7 +14,7 @@ nginx-demo1:
     type: RollingUpdate
   deploymentLabels: {}
   podLabels: {}
-  containerName: nginx-demo
+  containerName: redis-master
   service:
     name: var-ms
     enabled: true
