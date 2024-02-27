@@ -75,8 +75,8 @@ redis-master:
       cpu: '2'
       memory: 1Gi
     requests:
-      cpu: 500m
-      memory: 500Mi
+      cpu: 5.0m
+      memory: 3.0Mi
   autoscaling:
     enabled: false
     minReplicas: 2
