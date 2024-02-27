@@ -1,7 +1,8 @@
 nginx-demo1:
   deploymentLabels:
-    app.kubernetes.io/name: nginx-demo
-  containerName: nginx-demo
+    app.kubernetes.io/name: argocd-redis
+  nameOverride: redis-master
+  containerName: argocd-redis
   resources:
     limits:
       cpu: '2'
