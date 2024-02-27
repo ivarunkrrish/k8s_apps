@@ -1,22 +1,82 @@
 redis-master:
-  nodeGroup: "master"
+  replicaCount: 1
+  image:
+    repository: docker/vartest
+    pullPolicy: IfNotPresent
+    tag: var-1.1
+  imagePullSecrets:
+    - name: vartest
+  nameOverride: redis-master
+  fullnameOverride: ''
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+    type: RollingUpdate
+  deploymentLabels: {}
+  podLabels: {}
+  containerName: redis-master
+  service:
+    name: var-ms
+    enabled: true
+    type: ClusterIP
+    port: 80
+    portName: http
+    targetPort: 80
+    sessionAffinity: None
+  ingress:
+    enabled: true
+    annotations: {}
+    hosts:
+      - host: var-ms.com
+        paths:
+          - /
+    tls: []
+  cm:
+    create: true
+    type: local
+    files:
+      - settings.yaml: |-
+          # To be using with a docker
 
-  # If discovery.type in the opensearch configuration is set to "single-node",
-  # this should be set to "true"
-  # If "true", replicas will be forced to 1
-  singleNode: false
-
-  # The service that non master groups will try to connect to when joining the cluster
-  # This should be set to clusterName + "-" + nodeGroup for your master group
-  masterService: "opensearch-cluster-master"
-
-  # OpenSearch roles that will be applied to this nodeGroup
-  # These will be set as environment variable "node.roles". E.g. node.roles=master,ingest,data,remote_cluster_client
-  roles:
-    - master
-    - ingest
-    - data
-    - remote_cluster_client
+          API_PORT: 86
+      - supervisord.conf: |-
+          [supervisord]
+          nodaemon=true
+  volumes:
+    enabled: true
+    cm:
+      enabled: true
+      type: local
+      mounts:
+        file1:
+          mountPath: /etc/supervisord.conf
+          subPath: supervisord.conf
+        file2:
+          mountPath: /var/settings.yaml
+          name: cve-conf
+          subPath: settings.yaml
+    secrets:
+      enabled: true
+      secretName: var-secret
+      mountPath: /var/ets.yaml
+      subPath: secrets.yaml
+    extraVolumeMounts:
+      enabled: false
+  ports:
+    enabled: true
+    portname: http
+    containerPort: 80
+    protocol: TCP
+  extraEnvs:
+    - name: AWS_ROLE_SESSION_NAME
+      value: var-ms-test
+  resources:
+    limits:
+      cpu: '2'
+      memory: 1Gi
+    requests:
+      cpu: 500m
+      memory: 500Mi
 
   replicas: 3
 
