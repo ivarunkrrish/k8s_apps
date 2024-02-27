@@ -6,7 +6,7 @@ redis-master:
     tag: var-1.1
   imagePullSecrets:
     - name: vartest
-  nameOverride: nginx-demo1
+  nameOverride: redis-master
   fullnameOverride: ''
   rollingUpdate:
     maxSurge: 1
