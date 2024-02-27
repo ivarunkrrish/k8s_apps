@@ -1,4 +1,4 @@
-my-release-nginx-demo:
+argocd-applicationset-controller:
   replicaCount: 1
   image:
     repository: docker/vartest
@@ -6,16 +6,16 @@ my-release-nginx-demo:
     tag: var-1.1
   imagePullSecrets:
     - name: vartest
-  nameOverride: my-release-nginx-demo
+  nameOverride: argocd-applicationset-controller
   fullnameOverride: ''
   rollingUpdate:
     maxSurge: 1
     maxUnavailable: 0
     type: RollingUpdate
   deploymentLabels:
-    app.kubernetes.io/name: my-release-nginx-demo
+    app.kubernetes.io/name: argocd-applicationset-controller
   podLabels: {}
-  containerName: nginx-demo
+  containerName: argocd-applicationset-controller
   service:
     name: var-ms
     enabled: true
@@ -109,6 +109,7 @@ my-release-nginx-demo:
   podAnnotations: {}
   podSecurityContext: {}
   securityContext: {}
+
 nginx-server-nginx-repo:
   replicaCount: 1
   image:
