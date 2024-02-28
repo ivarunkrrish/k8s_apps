@@ -19,5 +19,7 @@ spec:
       containers:
       - name: nginx-demo
         image: registry.k8s.io/redis:e2e  # or just image: redis
+        resources:
+          requests:
         ports:
         - containerPort: 6379
