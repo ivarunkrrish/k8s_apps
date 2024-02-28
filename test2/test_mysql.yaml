@@ -20,6 +20,10 @@ spec:
       containers:
       - image: mysql:5.6
         name: nginx-demo
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
