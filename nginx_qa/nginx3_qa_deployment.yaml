@@ -5,10 +5,15 @@ metadata:
   namespace: default
 spec:
   template:
+    metadata:
+      labels:
+        app: nginx
     spec:
       containers:
         - name: vartest-nginx
           image: 'nginx:1.14.2'
+          ports:
+            - containerPort: 80
           resources:
             limits:
               cpu: 500m
@@ -18,6 +23,8 @@ spec:
               memory: 1024.0Mi
         - name: vartest-nginx-logs
           image: 'nginx:1.14.2'
+          ports:
+            - containerPort: 8081
           resources:
             limits:
               cpu: 500m
