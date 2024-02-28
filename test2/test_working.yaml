@@ -17,9 +17,11 @@ spec:
         tier: backend
     spec:
       containers:
-      - name: nginx-demo
-        image: registry.k8s.io/redis:e2e  # or just image: redis
-        resources:
-          requests:
-        ports:
-        - containerPort: 6379
+        - name: nginx-demo
+          image: registry.k8s.io/redis:e2e # or just image: redis
+          resources:
+            requests:
+              cpu: 1.0m
+              memory: 3.0Mi
+          ports:
+            - containerPort: 6379
