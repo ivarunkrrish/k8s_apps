@@ -1,0 +1,2 @@
+"name","accountId","clusterId","startTime","endTime","groupedBy","compute-total","storage-total","storage-block-total","storage-block-ebsPv-total","storage-block-nonPv-total","storage-file-total","storage-file-efsPv-total"
+"oesg-8b3e1c96_ECSService_3603b63d","act-29ddd113","o-8281ac4f","2024-03-14T00:00:00.000Z","2024-03-14T12:00:00.000Z","ECS_GROUP_TYPE","0","0.00322580637951051","0.00322580637951051","0","0.00322580637951051","0","0"

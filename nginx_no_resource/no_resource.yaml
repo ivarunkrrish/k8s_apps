@@ -21,7 +21,3 @@ spec:
           image: registry.k8s.io/redis:e2e # or just image: redis
           ports:
             - containerPort: 6379
-          resources:
-            requests:
-              cpu: 200.0m
-              memory: 4.0Mi
